@@ -6,7 +6,7 @@ control 'terraform-destroy' do
   impact 1.0
   desc 'Run terraform destroy'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform destroy -force -var "prefix=uat-tf-vault-lab"'
   ) do
     its('exit_status') { should eq 0 }
