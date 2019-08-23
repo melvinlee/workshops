@@ -11,4 +11,3 @@ If you are a student you'll find Terraform code for your labs in the [aws](./aws
 The slide decks for this repository are published here:
 
 https://hashicorp.github.io/workshops
-
