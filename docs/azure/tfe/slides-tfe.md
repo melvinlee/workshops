@@ -1229,10 +1229,8 @@ has changed. Terraform will now check for existing state in the backends.
 *use this backend unless the backend configuration changes.
 ```
 
-You can use `terraform init` to move workspace state between organizations.
-
 ???
-We're actually moving your state file from one organization to another. Cool!
+We're recreating our workspace from VCS, in our new organization.
 
 ---
 name: switch-to-git-bash
@@ -1640,7 +1638,7 @@ The security team has a new requirement: All Azure VMs must be tagged with an **
 
 Figure out how to edit your Terraform code to add a tag to your virtual machine. The name of the tag should be **environment** and the value should be **production**.
 
-When you are done you should see all your Sentinel tests passing in the UI:
+When you are done you should see the enforce-mandatory-tags test passing in the UI:
 
 .center[![:scale 80%](images/policy_check_passed.png)]
 
