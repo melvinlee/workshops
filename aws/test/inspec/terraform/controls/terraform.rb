@@ -21,10 +21,10 @@ control 'git-clone' do
   desc 'Clone the training repository'
   describe powershell(
     "cd C:\\Users\\hashicorp\\Desktop;
-    Remove-Item -force -recurse -path C:\\Users\\hashicorp\\Desktop\\aws-tf-vault-workshop
-    git clone --single-branch --branch #{ENV['CIRCLE_BRANCH']} https://github.com/hashicorp/workshops.git aws-tf-vault-workshop
-    # git clone https://github.com/hashicorp/workshops.git aws-tf-vault-workshop
-    Get-ChildItem C:\\Users\\hashicorp\\Desktop\\aws-tf-vault-workshop\\aws"
+    Remove-Item -force -recurse -path C:\\Users\\hashicorp\\Desktop\\aws-workshop
+    git clone --single-branch --branch #{ENV['CIRCLE_BRANCH']} https://github.com/hashicorp/workshops.git aws-workshop
+    # git clone https://github.com/hashicorp/workshops.git aws-workshop
+    Get-ChildItem C:\\Users\\hashicorp\\Desktop\\aws-workshop\\aws"
   ) do
     its('exit_status') { should eq 0 }
     its('stdout') { should match(/main.tf/) }
@@ -48,7 +48,7 @@ control 'terraform-init' do
   impact 1.0
   desc 'Run terraform init.'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform init'
   ) do
     its('exit_status') { should eq 0 }
@@ -63,7 +63,7 @@ control 'terraform-plan' do
   impact 1.0
   desc 'Run terraform plan.'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform plan -var "prefix=uat-tf-vault-lab"'
   ) do
     its('exit_status') { should eq 0 }
@@ -77,7 +77,7 @@ control 'terraform-apply' do
   impact 1.0
   desc 'Run terraform apply.'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform apply -auto-approve -var "prefix=uat-tf-vault-lab"'
   ) do
     its('exit_status') { should eq 0 }
@@ -91,7 +91,7 @@ control 'terraform-destroy-one' do
   impact 1.0
   desc 'Run terraform destroy'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform destroy -force -var "prefix=uat-tf-vault-lab"'
   ) do
     its('exit_status') { should eq 0 }
@@ -105,7 +105,7 @@ control 'terraform-build-vault-lab' do
   impact 1.0
   desc 'Build the rest of the Vault lab'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     Copy-Item -Force "main.tf.completed" -Destination "main.tf"
     terraform init
     terraform apply -auto-approve -var "prefix=uat-tf-vault-lab"'
@@ -121,7 +121,7 @@ control 'terraform-refresh' do
   impact 1.0
   desc 'Run terraform refresh to show outputs'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     Copy-Item -Force "outputs.tf.completed" -Destination "outputs.tf"
     terraform refresh -var "prefix=uat-tf-vault-lab"'
   ) do
@@ -137,7 +137,7 @@ control 'terraform-output' do
   impact 1.0
   desc 'Run terraform output to show outputs'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform output'
   ) do
     its('exit_status') { should eq 0 }
@@ -151,7 +151,7 @@ control 'terraform-output-singlevalue' do
   impact 1.0
   desc 'Run terraform output to show a single value'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform output Vault_Server_URL'
   ) do
     its('exit_status') { should eq 0 }
@@ -165,7 +165,7 @@ control 'terraform-fmt' do
   impact 1.0
   desc 'Run terraform fmt to format code'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform fmt'
   ) do
     its('exit_status') { should eq 0 }
@@ -178,7 +178,7 @@ control 'terraform-taint-provisioner' do
   impact 1.0
   desc 'Run terraform taint and re-build virtual machine'
   describe powershell(
-    'cd C:\Users\hashicorp\Desktop\aws-tf-vault-workshop\aws;
+    'cd C:\Users\hashicorp\Desktop\aws-workshop\aws;
     terraform taint aws_instance.vault-server;
     terraform apply -auto-approve -var "prefix=uat-tf-vault-lab"'
   ) do
