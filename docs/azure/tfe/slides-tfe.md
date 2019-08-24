@@ -1440,6 +1440,8 @@ Your boss has asked you to update the content on the website. Edit the **files/d
 
 When you are done editing the file save it and push the change to your remote repo. You can do this on the command line or via the VCS Branch button in Visual Studio Code. 
 
+**Note:** You'll need to trigger the first run via the UI. Subsequent runs will trigger for every git merge to the master branch.
+
 ???
 Instructor Note: You may need to trigger a new Terraform run from the UI. This may no longer be an issue?
 
@@ -1471,6 +1473,9 @@ name: chapter-6d-tfe-lab-solution-2
 
 .center[![:scale 80%](images/git_triggered_run.png)]
 You can see which git commit triggered the run in the Terraform Enterprise UI.
+
+???
+TODO: Add another lab exercise in here, give the students more experience with VCS-driven runs.
 
 ---
 name: destroy-your-app
@@ -1630,6 +1635,9 @@ A robot stands guard between your Terraform code and the Azure APIs.
 
 Are you ready for the next lab?
 
+???
+**Instructor Note:** Make sure everybody's workspace is done destroying before they proceed.
+
 ---
 name: chapter-7-tfe-lab
 .center[.lab-header[👮🏿‍♀️ Lab Exercise 7: Secure the App]]
@@ -1638,9 +1646,9 @@ The security team has a new requirement: All Azure VMs must be tagged with an **
 
 Figure out how to edit your Terraform code to add a tag to your virtual machine. The name of the tag should be **environment** and the value should be **production**.
 
-When you are done you should see the enforce-mandatory-tags test passing in the UI:
+When you are done you should see the failed enforce-mandatory-tags pass:
 
-.center[![:scale 80%](images/policy_check_passed.png)]
+.center[![:scale 80%](images/policy_check_failed.png)]
 
 ???
 Instructor Note: walk around and check on your students as they work through the lab.
