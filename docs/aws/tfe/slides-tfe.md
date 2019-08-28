@@ -212,7 +212,7 @@ Fork the Application Repo
 .center[![:scale 100%](images/fork.png)]
 Log onto your GitHub account and navigate to this URL:
 
-.center[https://github.com/scarolan/hashicat]
+.center[https://github.com/hashicorp/hashicat-aws]
 
 Click on the **Fork** button in the upper right corner. This will create an exact copy of the repo in your own account. Keep the new repo open in your web browser.
 
@@ -260,8 +260,8 @@ Run the following commands to clone the training repository from GitHub. Replace
 
 ```bash
 cd ~/
-git clone https://github.com/GITUSER/hashicat
-cd hashicat/aws/
+git clone https://github.com/GITUSER/hashicat-aws
+cd hashicat-aws/
 ```
 
 Now open up the `main.tf` file with `nano`.
@@ -337,7 +337,7 @@ terraform apply -auto-approve
 
 **Output:**
 ```tex
-aws_vpc.hashicat: Creating...
+aws_vpc.hashicat-aws: Creating...
   arn:                              "" => "<computed>"
   assign_generated_ipv6_cidr_block: "" => "false"
   cidr_block:                       "" => "10.0.0.0/16"
@@ -1215,7 +1215,7 @@ name: create-new-workspace
 Create a New Workspace
 -------------------------
 .center[![:scale 50%](images/create_repo_workspace.png)]
-Create a new workspace. This time you'll see an option to choose a git repository to connect to. Find your forked copy of the **`hashicat`** repo and click on **Create Workspace**.
+Create a new workspace. This time you'll see an option to choose a git repository to connect to. Find your forked copy of the **`hashicat-aws`** repo and click on **Create Workspace**.
 
 ---
 name: update-remote-backend
@@ -1281,7 +1281,7 @@ https://github.com/hashicorp-community/tf-helper
 **Step 1**: Run the **`install_tfh.sh`** script. You may simply copy and paste the commands below:
 
 ```bash
-cd ~/hashicat/aws/files
+cd ~/hashicat-aws/files
 sudo chmod 755 install_tfh.sh
 ./install_tfh.sh
 source ~/.bash_profile
@@ -1390,7 +1390,7 @@ name: configure-git-bash
 Configure Git Identity
 -------------------------
 <br><br><br>
-Before you can push changes to your fork of the hashicat repo, you'll need to configure your email and username settings. Run the commands below with your own email address and name:
+Before you can push changes to your fork of the hashicat-aws repo, you'll need to configure your email and username settings. Run the commands below with your own email address and name:
 
 Commands:
 ```bash
@@ -1473,7 +1473,7 @@ You can configure rules like requiring tests to pass, code reviews, approvals an
 name: chapter-8a-tfe-lab
 .center[.lab-header[👫 Lab Exercise 8a: VCS Collaboration]]
 <br>
-One of your team members needs to make a change to your shared dev environment. Break into pairs and exchange the URLs of your hashicat repo forks. Take turns doing the steps below:
+One of your team members needs to make a change to your shared dev environment. Break into pairs and exchange the URLs of your hashicat-aws repo forks. Take turns doing the steps below:
 
 **Partner 1:**
 1. Navigate to your partner's git repo URL.
@@ -1749,11 +1749,11 @@ Instructor note: You might see a git error message when you try to push. This is
 If your students have any trouble with stuck state show them how to use the **`terraform state list`** and **`terraform state rm`** commands:
 
 ```bash
-hashicorp@seanclab000 MINGW64 ~/Desktop/hashicat (master)
+hashicorp@seanclab000 MINGW64 ~/Desktop/hashicat-aws (master)
 $ terraform state list
 module.web_app_container.azurerm_app_service_plan.main[0]
 
-hashicorp@seanclab000 MINGW64 ~/Desktop/hashicat (master)
+hashicorp@seanclab000 MINGW64 ~/Desktop/hashicat-aws (master)
 $ terraform state rm module.web_app_container.azurerm_app_service_plan.main[0]
 ```
 
@@ -1854,7 +1854,7 @@ name: chapter-11-tfe-lab-0
 This challenging lab brings together everything you learned in previous chapters. Each partner should complete the setup, then your instructor will start the clock for **The Gauntlet**.
 
 **Setup Part 1: Create a UAT Branch**
-1. Go into your fork of the hashicat repo and create a new branch called **`uat`**:
+1. Go into your fork of the hashicat-aws repo and create a new branch called **`uat`**:
 .center[![:scale 40%](images/uat_branch.png)]
 2. Click on the **Settings** menu then click on **Collaborators**. Add your partner's GitHub username and click **Add Collaborator**.
 3. Share the invite link with your partner. Accept your partner's invite link to join their repository as a collaborator.
@@ -1911,7 +1911,7 @@ tfh pushvars -overwrite-all -dry-run false \
 3. In Visual Studio Code clone a copy of your **partner's** repository:
 ```bash
 cd Desktop
-git clone https://github.com/mypartner/hashicat uat-webapp
+git clone https://github.com/mypartner/hashicat-aws uat-webapp
 cd uat-webapp
 git checkout uat
 code -r .

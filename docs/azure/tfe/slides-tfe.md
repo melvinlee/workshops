@@ -314,7 +314,7 @@ Fork the Application Repo
 .center[![:scale 100%](images/fork.png)]
 Log onto your github account and navigate to this URL:
 
-.center[https://github.com/scarolan/hashicat]
+.center[https://github.com/hashicorp/hashicat-azure]
 
 Click on the **Fork** button in the upper right corner. This will create an exact copy of the repo in your own account. Keep the new repo open in your web browser.
 
@@ -330,8 +330,8 @@ Run the following commands to clone the training repository from GitHub. Replace
 
 ```powershell
 cd ~/Desktop
-git clone https://github.com/GITUSER/hashicat
-cd hashicat
+git clone https://github.com/GITUSER/hashicat-azure
+cd hashicat-azure
 ```
 
 Now reload your text editor in the current directory with the code command:
@@ -363,7 +363,7 @@ You are installing the modules from an untrusted repository. If you trust this r
 Set-PSRepository cmdlet. Are you sure you want to install the modules from 'PSGallery'?
 [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): Y
 
-C:\Users\hashicorp\Desktop\hashicat [master ≡]>
+C:\Users\hashicorp\Desktop\hashicat-azure [master ≡]>
 ```
 
 ???
@@ -726,7 +726,7 @@ In this lab exercise you will enable Terraform remote state on your workstation.
 
 * A User Access Token for your config file
 * A **terraform.rc** file located at `%APPDATA%\terraform.rc`
-* A **remote_backend.tf** file in the hashicat folder
+* A **remote_backend.tf** file in the hashicat-azure folder
 
 Explore the Terraform Enterprise UI and find your user settings. From there, figure out how to generate a token.
 
@@ -736,7 +736,7 @@ cd $env:APPDATA
 code terraform.rc
 ```
 
-Create a **remote_backend.tf** in the hashicat folder.
+Create a **remote_backend.tf** in the hashicat-azure folder.
 
 Use the examples on the previous slide for reference.
 
@@ -782,7 +782,7 @@ Run a **`terraform init`** command to migrate to remote state.  You should see o
 
 Command:
 ```powershell
-cd ~/Desktop/hashicat
+cd ~/Desktop/hashicat-azure
 terraform init
 ```
 
@@ -1072,11 +1072,11 @@ Let's remove the **`.terraform`** directory as well.
 
 Command:
 ```powershell
-cd ~/Desktop/hashicat
+cd ~/Desktop/hashicat-azure
 Remove-Item -Recurse .terraform
 ```
 
-You should no longer have a .terraform directory in the hashicat repo.
+You should no longer have a .terraform directory in the hashicat-azure repo.
 
 
 ---
@@ -1175,7 +1175,7 @@ name: create-new-workspace-2
 Create a New Workspace
 -------------------------
 .center[![:scale 90%](images/create_repo_workspace_2.png)]
-Select the hashicat repo that you forked earlier. You can filter the available repos with the text box in the upper right corner.
+Select the hashicat-azure repo that you forked earlier. You can filter the available repos with the text box in the upper right corner.
 
 ---
 name: create-new-workspace-3
@@ -1197,12 +1197,12 @@ terraform {
     hostname = "app.terraform.io"
     organization = "yourname-sandbox"
     workspaces {
-      name = "hashicat"
+      name = "hashicat-azure"
     }
   }
 }
 ```
-Note that the workspace name is now simply **hashicat**. This is fine.
+Note that the workspace name is now **hashicat-azure**. This is fine.
 
 Save the **remote_backend.tf** file.
 
@@ -1262,7 +1262,7 @@ pwd
 
 Output:
 ```bash
-/c/Users/hashicorp/Desktop/hashicat
+/c/Users/hashicorp/Desktop/hashicat-azure
 ```
 
 ???
@@ -1276,10 +1276,10 @@ Terraform Helper is a command line tool that makes it easier to manage Terraform
 
 https://github.com/hashicorp-community/tf-helper
 
-**Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat/files** directory. You may simply copy and paste the commands below:
+**Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat-azure/files** directory. You may simply copy and paste the commands below:
 
 ```bash
-cd ~/Desktop/hashicat/files
+cd ~/Desktop/hashicat-azure/files
 ./install_tfh.sh
 source ~/.bash_profile
 ```
@@ -1329,7 +1329,7 @@ tfh pushvars -overwrite-all -dry-run false \
 
 Output:
 ```tex
-Updating prefix type:terraform hcl:false sensitive:false value:hashicat
+Updating prefix type:terraform hcl:false sensitive:false value:hashicat-azure
 Updating ARM_TENANT_ID type:env hcl:false sensitive:false value:0e3e2e88-8caf-41ca-b4da-e3b33b6c52ec
 Updating ARM_SUBSCRIPTION_ID type:env hcl:false sensitive:false value:14692f20-9428-451b-8298-102ed4e39c2a
 Updating ARM_CLIENT_ID type:env hcl:false sensitive:false value:91299f64-f951-4462-8e97-9efb1d215501
@@ -1381,7 +1381,7 @@ Run Terraform Apply
 -------------------------
 Command:
 ```bash
-cd ~/Desktop/hashicat
+cd ~/Desktop/hashicat-azure
 terraform apply -auto-approve
 ```
 
@@ -1416,7 +1416,7 @@ name: configure-git-bash
 Configure Git Identity
 -------------------------
 <br><br><br>
-Before you can push changes to your fork of the hashicat repo, you'll need to configure your email and username settings. Run the commands below with your own email address and name:
+Before you can push changes to your fork of the hashicat -azure repo, you'll need to configure your email and username settings. Run the commands below with your own email address and name:
 
 Commands:
 ```bash
@@ -1716,7 +1716,7 @@ You can configure rules like requiring tests to pass, code reviews, approvals an
 name: chapter-8a-tfe-lab
 .center[.lab-header[👫 Lab Exercise 8a: VCS Collaboration]]
 <br>
-One of your team members needs to make a change to your shared dev environment. Break into pairs and exchange the URLs of your hashicat repo forks. Take turns doing the steps below:
+One of your team members needs to make a change to your shared dev environment. Break into pairs and exchange the URLs of your hashicat-azure repo forks. Take turns doing the steps below:
 
 **Partner 1:**
 1. Navigate to your partner's git repo URL.
@@ -1860,7 +1860,7 @@ Reset the Lab Environment - Continued
 <br><br><br>Here are the git commands you'll need to run to reset your lab:
 
 ```bash
-cd ~/Desktop/hashicat
+cd ~/Desktop/hashicat-azure
 git pull
 git add .
 git commit -m "Reset lab."
@@ -2059,7 +2059,7 @@ name: chapter-11-tfe-lab-0
 This challenging lab brings together everything you learned in previous chapters. Each partner should complete the setup, then your instructor will start the clock for **The Gauntlet**.
 
 **Setup Part 1: Create a UAT Branch**
-1. Go into your fork of the hashicat repo and create a new branch called **`uat`**:
+1. Go into your fork of the hashicat-azure repo and create a new branch called **`uat`**:
 .center[![:scale 40%](images/uat_branch.png)]
 2. Click on the **Settings** menu then click on **Collaborators**. Add your partner's github username and click **Add Collaborator**.
 3. Share the invite link with your partner. Accept your partner's invite link to join their repository as a collaborator.
@@ -2122,7 +2122,7 @@ tfh pushvars -overwrite-all -dry-run false \
 3. In Visual Studio Code clone a copy of your **partner's** repository:
 ```bash
 cd Desktop
-git clone https://github.com/mypartner/hashicat uat-webapp
+git clone https://github.com/mypartner/hashicat-azure uat-webapp
 cd uat-webapp
 git checkout uat
 code -r .
