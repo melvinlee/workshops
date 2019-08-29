@@ -196,7 +196,7 @@ In order to proceed you'll need a Terraform workstation and valid AWS account cr
 
 You have two options:
 
-**Option 1:** Use a cloud-based workstation provided by your instructor. Your instructor will provide you with SSH credentials for the machine with all of the pre-requisites installed. This is the recommended option.
+**Option 1:** Use a cloud-based workstation provided by your instructor. Your instructor will provide you with RDP/SSH credentials for the machine with all of the pre-requisites installed. **This is the recommended option.**
 
 **Option 2:** If you want to bring your own machine, you'll want the [AWS CLI](https://aws.amazon.com/cli/) or the [AWS Shell](https://github.com/awslabs/aws-shell) installed. Make sure you have [`terraform`](https://learn.hashicorp.com/terraform/getting-started/install.html) and [`vault`**](https://www.vaultproject.io/docs/install/) installed as well. If you're running Windows, you'll also need [PuTTY](https://www.putty.org).
 
@@ -225,13 +225,19 @@ Log Onto Your Workstation
 -------------------------
 <br><br><br><br>
 
-Your instructor will provide you with SSH credentials for an Ubuntu server in AWS.
 
-The command you'll want to run will look like this: workstation URL that looks like this:
+Your instructor will provide you with RDP/SSH credentials for your cloud based workstation.
 
-```bash
-ssh -i ~/.ssh/id_rsa ubuntu@52.37.89.245
-```
+* For Windows based workstations you can use any RDP client to connect.  
+
+  ** Note: ** The workstations should be configured to accept RDP sessions on ports 3389, 80, and 443.
+  If you have trouble connecting try a different port.
+
+* For Linux based workstations you will connect using a command similar to this:
+
+  ```bash
+  ssh -i ~/.ssh/id_rsa ubuntu@52.37.89.245
+  ```
 
 ???
 SSH is installed by default on all *nix systems. If your students are on a Windows machine, they can download and use [PuTTY](https://www.putty.org/).
@@ -240,16 +246,30 @@ SSH is installed by default on all *nix systems. If your students are on a Windo
 name: tfe-workstation-setup-3
 Run the Setup Script
 -------------------------
-**If you are using an instructor provided machine,** Run the setup script on your workstation to set your AWS credentials.
+
+<br>
+<br>
+** If you are using Windows machine provided by your instructor,** Locate the `setup_aws` powershell script on the desktop, right click and select **Run with PowerShell**
+
+**If you are using an instructor provided Linux machine,** Run the setup script on your workstation to set your AWS credentials.
 
 ```bash
 source post_launch_setup_aws.sh
 ```
+
 .red[_**WARNING**: Do not skip this step. It is required to set up your connection to AWS. If you are bringing your own machine, set the **`AWS_ACCESS_KEY_ID`** and **`AWS_SECRET_ACCESS_KEY`** environment variables._]
 <br>
 <br>
-## Choose an Editor
-The workstation provided by your instructor will have both **`vim`** and **`nano`** installed by default, with each one having an HCL syntax highlighter for usage with Terraform. For accessibility's sake, we'll use **`nano`** as the example editor for the rest of this workshop.
+
+---
+name: tfe-workstation-setup-editor
+Choose an Editor
+-------------------------
+
+* **Linux workstations** provided by your instructor will have both **`vim`** and **`nano`** installed by default, with each one having an HCL syntax highlighter for usage with Terraform. For accessibility's sake, we'll use **`nano`** as the example editor for the rest of this workshop.
+
+* **Window workstations** will have Visual Studio Code pre-installed. You may get a pop up asking you to install the Terraform extensions. **This is recommended**
+
 
 ---
 name: tfe-workstation-setup-4
@@ -264,10 +284,16 @@ git clone https://github.com/GITUSER/hashicat-aws
 cd hashicat-aws/
 ```
 
-Now open up the `main.tf` file with `nano`.
+Now open up the `main.tf` file with `nano` or **Visual Studio Code**.
 
+Nano
 ```bash
 nano main.tf
+```
+
+Visual Studio Code
+```bash
+code .
 ```
 
 ---
@@ -351,10 +377,11 @@ Outputs:
 catapp_url = http://52.26.237.59
 ```
 
-**Note**: There is a [known bug](https://github.com/hashicorp/terraform/issues/12596) with the null_provisioner that *may* cause your run to hang if you're using Terraform 0.11.x.
 
 ???
 **We've built some terraform here that you probably wouldn't use in the real world.  It's been customized so that you can finish a run in 15 seconds instead of five to ten minutes. Some of what we did here is a bit unorthodox, for the sake of speed.**
+
+There is a [known bug](https://github.com/hashicorp/terraform/issues/12596) with the null_provisioner that *may* cause your run to hang if you're using Terraform 0.11.x.
 
 When this happens (terminal hangs for more than 30 seconds), have your student simply click on the little trash can icon in VSC, then reopen the terminal and run `terraform apply` again.  The problem should be gone, as the run did complete successfully.  NOTE: This issue appears to be fixed with Terraform 0.12
 
@@ -393,13 +420,14 @@ Commands:
 terraform apply -var placeholder=placebear.com -var height=500 -var width=500
 ```
 
-Try some different placeholder image sites. Here are some examples: [placedog.net](http://placedog.net), [placebear.com](http://placebear.com), [fillmurray.com](http://www.fillmurray.com), [placecage.com](http://placecage.com), [placebeard.it](http://placebeard.it), [loremflickr.com](http://loremflickr.com), [baconmockup.com](http://baconmockup.com), and [placeimg.com](http://placeimg.com).
+Try some different placeholder image sites. Here are some examples: [placedog.net](http://placedog.net), [placebear.com](http://placebear.com), [www.fillmurray.com](http://www.fillmurray.com), [www.placecage.com](http://www.placecage.com), [placebeard.it](http://placebeard.it), [loremflickr.com](http://loremflickr.com), [baconmockup.com](http://baconmockup.com), and [placeimg.com](http://placeimg.com).
 
 ???
 Point out that we're doing some things here that you shouldn't do in production (like using null_resource for our provisioner.) You can also review the different ways to set variables:
 
 https://www.terraform.io/docs/configuration/variables.html#variable-definition-precedence
 
+Some of these sites may not work as well as others.  Others
 ---
 name: tfe-chapter-2-review
 📝 Chapter 2 Review
@@ -434,7 +462,7 @@ Terraform Cloud or Terraform Enterprise?
 
 **[Terraform Enterprise](https://www.hashicorp.com/go/terraform-enterprise)** is the same application, but it runs in your cloud environment or data center. Some users require more control over the Terraform Enterprise application, or wish to run it in restricted networks behind corporate firewalls.
 
-The feature list for these two offerings is nearly identical. We will be using Terraform Cloud accounts for our lab exercises today.*
+The feature list for these two offerings is nearly identical. We will be using Terraform Cloud accounts for our lab exercises today.
 
 ???
 At the instructor's discretion, this course can also be taught with an on-prem Terraform Enterprise server. We highly recommend sticking to the cloud based training though, to avoid any blockers or issues in the enterprise...
@@ -589,10 +617,11 @@ Terraform Cloud Remote State is free and available to all users. The requirement
 name: create-a-workspace-gui
 Create a New Workspace
 -------------------------
-.center[![:scale 80%](images/create_workspace_gui.png)]
+.center[![:scale 80%](images/create_workspace_gui2.png)]
 
 With paid and trial accounts, you must create a workspace before migrating to remote state. Make sure you are in the workshop organization (not your sandbox), then create a new workspace.
 
+We will be discussing VCS integration in future section. You can skip this step now and simply provide a workspace name.
 ???
 **Make sure you are in the shared workshop organization, not your personal sandbox org.**
 
@@ -611,15 +640,35 @@ Go into the **General** settings for your workspace and change the execution mod
 name: chapter-4-tfe-lab
 .center[.lab-header[👩🏽‍🔬 Lab Exercise 4: Enable Remote State]]
 <br><br>
-.center[![:scale 90%](images/get-started-tfe.png)]
 
-Click on the **Get Started** button in the Terraform Cloud UI. Follow the instructions on the popup message to migrate your application into a new workspace. Name your token **`workshop-token`**. Call your remote backend config file **`remote_backend.tf`**
+In this lab exercise you will enable Terraform remote state on your workstation. There are three ingredients you'll need to make it work:
+
+* A User Access Token for your config file
+* A **terraform.rc** file located at `%APPDATA%\terraform.rc` (`~/.terraformrc` for Linux)
+* A **remote_backend.tf** file in the hashicat-aws folder
+
+Explore the Terraform Enterprise UI and find your user settings. From there, figure out how to generate a token.
+
+Once you have a token, create your terraform.rc file. Here's an easy way to do that from your Powershell terminal:
+```powershell
+code $env:APPDATA/terraform.rc
+```
+As a starting point we've provided a remote_backend.tf.disabled and terraform.rc.example file
+
+???
+%APPDATA% is a shortcut on Windows to your application data directory. You can also go directly to `C:\Users\hashicorp\AppData\Roaming`.
+
+
+
+<!-- .center[![:scale 90%](images/get-started-tfe.png)]
+
+Click on the **Get Started** button in the Terraform Cloud UI. Follow the instructions on the popup message to migrate your application into a new workspace. Name your token **`workshop-token`**. Call your remote backend config file **`remote_backend.tf`** -->
 
 ---
 name: chapter-4-tfe-lab-solution-1
 .center[.lab-header[👩🏽‍🔬 Lab Exercise 4: Solution Part 1]]
 * Create a **user token**: https://app.terraform.io/app/settings/tokens
-* Edit your **`~/.terraformrc`** config file, replacing where it says `REPLACE_ME` with your token.
+* Edit your **terraform.rc** config file, replacing where it says `REPLACE_ME` with your token.
 
 ```bash
 nano ~/.terraformrc
@@ -728,18 +777,16 @@ Where Are Your API Keys?
 -------------------------
 Terraform requires credentials in order to communicate with your cloud provider's API. These API keys should never, ever be stored directly in your terraform code. Config files and environment variables are a better option, but the credentials still live on your workstation, usually stored in plaintext.
 
-Try these commands on your workstation to see your API credentials:
+Try these commands on from PowerShell to view your API credentials
 
 Access Key ID:
 ```bash
-echo "AWS_ACCESS_KEY_ID" $AWS_ACCESS_KEY_ID
-AWS_ACCESS_KEY_ID AKIAIOSFODNN7EXAMPLE
+echo $env:AWS_ACCESS_KEY_ID
 ```
 
 Secret Access Key:
 ```bash
-echo "AWS_SECRET_ACCESS_KEY" $AWS_SECRET_ACCESS_KEY
-AWS_SECRET_ACCESS_KEY wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+echo $env:AWS_SECRET_ACCESS_KEY
 ```
 
 ???
@@ -759,6 +806,9 @@ Terraform Cloud can safely store your credentials and encrypt them for you. You 
 ???
 **Before we store our sensitive variables in Terraform Enterprise, we must enable Remote Execution.**
 
+You may also point out again that these credentials are only valid for 8 hours and
+if anyone tries to check them into version control that hasn't happened since last week!
+We will get alerts, and the token will be shutdown!
 ---
 name: chapter-5-tfe-lab-enable-remote-execution
 .center[.lab-header[👩🏻‍🏫 Lab Exercise 5a: Remote Execution]]
@@ -1271,6 +1321,42 @@ Releasing state lock. This may take a few moments...
 We're actually moving your state file from one organization to another. Cool!
 
 ---
+name: switch-to-git-bash
+Switch to Git Bash
+-------------------------
+<br>
+For the next lab we're going to change our local shell to Git Bash.
+
+Click on the pulldown menu at the top of your terminal where it says:
+
+**`1: powershell`**
+
+Click on **Select Default Shell**.
+
+.center[![:scale 30%](images/select_default_shell.png)]
+
+---
+name: switch-to-git-bash
+Switch to Git Bash
+-------------------------
+.center[![:scale 100%](images/select_git_bash_2.png)]
+
+Change your default shell to Git Bash and launch a new Terminal window. The rest of the training commands will be run inside this shell. Note that your file paths look different under Git Bash:
+
+Command:
+```bash
+pwd
+```
+
+Output:
+```bash
+/c/Users/hashicorp/Desktop/hashicat-azure
+```
+
+???
+Terraform is a multi-platform tool and can be run on Mac or Windows, Bash or Powershell.
+
+---
 name: install-terraform-helper-0
 Install the Terraform Helper Tool
 -------------------------
@@ -1278,11 +1364,11 @@ Terraform Helper is a command line tool that makes it easier to manage Terraform
 
 https://github.com/hashicorp-community/tf-helper
 
-**Step 1**: Run the **`install_tfh.sh`** script. You may simply copy and paste the commands below:
+**Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat-azure/files** directory. You may simply copy and paste the commands below:
 
 ```bash
+cp /c/Users/cerner/AppData/Roaming/terraform.rc ~/.terraformrc
 cd ~/hashicat-aws/files
-sudo chmod 755 install_tfh.sh
 ./install_tfh.sh
 source ~/.bash_profile
 ```
@@ -1294,13 +1380,12 @@ export TFH_org=ORGNAME
 export TFH_name=WORKSPACENAME
 ```
 
-.center[_Setup instructions continue on the next slide..._]
+_Instructions continue on the next slide..._
 
 ---
 name: install-terraform-helper-1
 Install the Terraform Helper Tool
 -------------------------
-<br><br><br>
 **Step 3**: Auto-generate your curlrc file with the curl-config helper subcommand:
 
 Command:
@@ -1310,34 +1395,35 @@ tfh curl-config -tfrc
 
 Output:
 ```bash
-/home/ubuntu/.tfh/curlrc generated from /home/ubuntu/.terraformrc
+/c/Users/hashicorp/.tfh/curlrc generated from /c/Users/hashicorp/.terraformrc
 ```
 
 Now you are ready to use the **`tfh`** command line tool. Proceed to the next slide.
 
 ---
-name: chapter-7b-tfe-lab
-.center[.lab-header[⚗️ Lab Exercise 7b: Upload Variables]]
+name: chapter-6b-tfe-lab
+.center[.lab-header[⚗️ Lab Exercise 6b: Upload Variables]]
 <br><br>
 You'll need to recreate the environment variables and terraform variables in your workspace. This is fairly easy to do with the Terraform Helper tool. Run the following command, and _don't forget to change **yourprefix** to your own prefix_. The rest of the command can remain the same.
 
 Command:
 ```bash
 tfh pushvars -overwrite-all -dry-run false \
-  -senv-var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+  -env-var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
   -senv-var "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
-  -var "prefix=yourprefix"
+  -var "prefix=CHANGEME"
 ```
 
 Output:
 ```tex
 Updating prefix type:terraform hcl:false sensitive:false value:yourprefix
-Updating AWS_ACCESS_KEY_ID type:env hcl:false sensitive:false value:AKIAIOSFODNN7EXAMPLE
+Updating AWS_ACCESS_KEY_ID type:env hcl:false sensitive:false value:AKIA266GU7ZPMFRNXQKL
 Updating AWS_SECRET_ACCESS_KEY type:env hcl:false sensitive:true value:REDACTED
 ```
 
 ???
 Instructors: You must have the jq tool installed on your workstation to use the tfh tool.
+
 
 ---
 name: chapter-7b-tfe-lab-solution
@@ -1365,10 +1451,12 @@ Simply add more **`-var`** flags at the end of the command to update your variab
 Command:
 ```bash
 tfh pushvars -overwrite-all -dry-run false \
-  -senv-var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+  -env-var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
   -senv-var "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
-  -var "prefix=yourprefix" -var "height=600" -var "width=800" \
-  -var "placeholder=fillmurray.com"
+  -var "prefix=CHANGEME" \
+  -var "placeholder=www.placecage.com" \
+  -var "height=600" \
+  -var "width=600"
 ```
 
 NOTE: The **`\`** characters indicate that the command should continue on the next line. This entire block of text should be copied and pasted into the terminal all at once.
