@@ -1512,7 +1512,7 @@ name: chapter-7d-tfe-lab-solution-1
 Commit your changes and push them to the remote repo via the `git` CLI.
 
 ```bash
-git add .
+git add files/deploy_app.sh
 git commit -m "Updated website."
 git push origin master
 ```
