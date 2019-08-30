@@ -1054,7 +1054,7 @@ Either from the command line, or the GUI, destroy your web application. We're go
 
 Command Line:
 ```powershell
-terraform destroy -force
+terraform destroy -auto-approve
 ```
 
 GUI:
