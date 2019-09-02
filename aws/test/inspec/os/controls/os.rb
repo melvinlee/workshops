@@ -28,7 +28,7 @@ control 'terraform-version' do
   impact 1.0
   desc 'Checks to see that Terraform is installed and working.'
   describe powershell('terraform --version') do
-    its('stdout') { should match(/0.12.6/) }
+    its('stdout') { should match(/0.12.7/) }
   end
 end
 
@@ -46,7 +46,7 @@ control 'git-version' do
   impact 1.0
   desc 'Checks to see that Git is installed and working.'
   describe powershell('git --version') do
-    its('stdout') { should match(/2.22.0.windows.1/) }
+    its('stdout') { should match(/2.23.0.windows.1/) }
   end
 end
 
