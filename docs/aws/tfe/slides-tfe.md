@@ -1417,7 +1417,7 @@ tfh pushvars -overwrite-all -dry-run false \
 Output:
 ```tex
 Updating prefix type:terraform hcl:false sensitive:false value:yourprefix
-Updating AWS_ACCESS_KEY_ID type:env hcl:false sensitive:false value:AKIA266GU7ZPMFRNXQKL
+Updating AWS_ACCESS_KEY_ID type:env hcl:false sensitive:false value:AKIA266GU7ZPMEXAMPLE
 Updating AWS_SECRET_ACCESS_KEY type:env hcl:false sensitive:true value:REDACTED
 ```
 
