@@ -1367,7 +1367,7 @@ https://github.com/hashicorp-community/tf-helper
 **Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat-azure/files** directory. You may simply copy and paste the commands below:
 
 ```bash
-cp /c/Users/cerner/AppData/Roaming/terraform.rc ~/.terraformrc
+cp /c/Users/hashicorp/AppData/Roaming/terraform.rc ~/.terraformrc
 cd ~/hashicat-aws/files
 ./install_tfh.sh
 source ~/.bash_profile
