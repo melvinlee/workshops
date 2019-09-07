@@ -565,27 +565,14 @@ Sign Up for a Free Account
 **Instructor Note:** You'll want to gather a list of all your students TF cloud usernames. Make a spreadsheet or list on the whiteboard with their username, and the name of their sandbox organization. You'll be using both of these for lab setup.
 
 ---
-name: tfe-join-a-team
-Join an Existing Team
--------------------------
-.center[![:scale 90%](images/tf_cloud_welcome.png)]
-
-Before you go further, provide your username to your instructor. This is so you can be invited to the workshop organization.
-
-???
-**Now I need you all to write your TFE username on the whiteboard. This is so I can invite you to our shared training organization.**
-
-Instructor - you should have an organization ready for training. Instructions for setting up this organization and team are located here:
-
-https://github.com/hashicorp/workshops/blob/master/azure-tfe/README.md
-
----
 name: tfe-create-an-org
 Create an Organization
 -------------------------
 .center[![:scale 70%](images/sandbox.png)]
 
-Create a new organization for your own development work. We'll be using this later in the training.
+Create a new organization for your own development work.
+
+Your instructor will upgrade your organization to a trial which unlocks all the enterprise features.
 
 Replace **yourname** with your own name please!
 
@@ -595,27 +582,19 @@ Replace **yourname** with your own name please!
 Instructors, have your students write their org names on a piece of paper or the whiteboard. You'll need to go into the admin console and upgrade them all to trial organizations.
 
 ---
-name: tfe-choose-an-org
-Select the Workshop Organization
--------------------------
-.center[![:scale 70%](images/choose_training_org.png)]
-Your instructor will invite you to the workshop organization. Once you've been invited you'll see a second organization in the org pull-down menu. Change from your sandbox organization into the workshop organization. The organization name may be different than what you see on the slide.
-
-???
-**For the first portion of this workshop we'll all be sharing the same sandbox. I've invited you all to this $TRAININGORG where you have the ability to create your own workspaces.**
-
----
 name: tfe-chapter-3-review
 📝 Chapter 3 Review
 -------------------------
 <br>
 .contents[
 In this chapter we:
-* Looked at Terraform Enterprise and Enterprise
-* Signed up for a Terraform Enterprise account
-* Created a sandbox organization
-* Joined the workshop organization
+* Looked at Terraform Enterprise and Terraform Cloud
+* Signed up for a Terraform Cloud account
+* Created a sandbox organization for our labs
 ]
+
+???
+Instructor, you should get a list of your users organizations and upgrade them to trial orgs.
 
 ---
 name: TFE-Chapter-4
@@ -657,10 +636,7 @@ Create a New Workspace
 -------------------------
 .center[![:scale 80%](images/create_workspace_gui_new.png)]
 
-You must create a workspace before migrating to remote state. Make sure you are in the workshop organization (not your sandbox), then create a new workspace. You can skip the VCS step, because we aren't using our VCS system yet.
-
-???
-**Make sure you are in the shared workshop organization, not your personal sandbox org.**
+You must create a workspace before migrating to remote state. You can skip the VCS step, because we aren't using our VCS system yet.
 
 ---
 name: create-a-workspace-gui-2
@@ -1103,8 +1079,8 @@ In this chapter we:
 * Moved our Azure Creds to TF Cloud
 * Created a prefix variable
 * Ran Terraform Apply from the GUI
-* Destroyed our Workspace
-* Deleted our Workspace from TFE
+* Destroyed our application
+* Deleted our workspace
 ]
 
 ---
@@ -1133,15 +1109,6 @@ Until now all our code changes have been done on our workstation. Let's upgrade 
 
 ???
 TODO: Add an image to this slide.
-
----
-name: switch-back-to-sandbox
-Change to Your Sandbox Org
--------------------------
-<br>
-.center[![:scale 70%](images/choose_org.png)]
-
-Use the Organization pull-down menu to go back to your sandbox organization. This is a clean development environment where you can experiment with Terraform Enterprise. You need to be in your own organization to connect to your VCS (github.com).
 
 ---
 name: chapter-6a-tfe-lab
@@ -1478,20 +1445,20 @@ You can see which git commit triggered the run in the Terraform Enterprise UI.
 TODO: Add another lab exercise in here, give the students more experience with VCS-driven runs.
 
 ---
-name: destroy-your-app
+name: destroy-your-application
 Destroy Your Application
 -------------------------
-We need to destroy our application before the next lab.
+Either from the command line, or the GUI, destroy your web application. We're going to rebuild it from our code repo in the next chapter.
 
-.center[![:scale 100%](images/queue_destroy_plan.png)]
+Command Line:
+```powershell
+terraform destroy -auto-approve
+```
 
-1. Go into the **Destruction and Deletion** settings for your workspace.
-2. Click on the **Queue Destroy Plan** button. When the run reaches the confirmation stage click **Confirm and Apply**.
+GUI:
+.center[![:scale 100%](images/destroy_gui.png)]
 
-Remember you'll need a **`CONFIRM_DESTROY`** environment variable set to **`1`** to enable destroy plans.
-
-???
-Instructor Note: You can proceed all the way up through the next lab while these destroy plans run.
+Do not click the red Destroy from Terraform Enterprise button. This will delete your entire workspace. Remember to confirm the destroy action from within the UI.
 
 ---
 name: tfe-chapter-6-review
