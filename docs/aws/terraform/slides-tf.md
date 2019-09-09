@@ -1231,6 +1231,7 @@ resource "aws_subnet" "subnet" {
   }
 }
 ```
+Alternatively, you can run **`terraform graph`** to see a visual execution graph of Terraform resources in the current directory. The graph is outputted in DOT format. A typical program that can read this format is GraphViz, but many web services are also available to read this format. 
 
 ---
 name: terraform-apply-again
@@ -1715,7 +1716,7 @@ name: chapter-5-lab-answer
 The remote-exec provisioner is a [Creation Time](https://www.terraform.io/docs/provisioners/index.html#creation-time-provisioners) Provisioner. It does not run every time you update scripts or code within the remote-exec block. If you need to completely rebuild a virtual machine, you can use the **`terraform taint`** command to mark it for a rebuild. Go ahead and taint your AWS VM and rebuild it before the next chapter.
 
 ```bash
-terraform taint aws_instance.vault
+terraform taint aws_instance.vault-server
 terraform apply -auto-approve
 ```
 
