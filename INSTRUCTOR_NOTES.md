@@ -10,7 +10,8 @@ se-training-lab is a virtual classroom environment where you can quickly create 
 ## Setting up the lab
 If you have access to the HashiCorp Azure Demo environment, you can simply browse to the Azure Dev/Test labs section and click on *se-training-lab*, *emea-training-lab*, or *apac-training-lab*. If you're a partner or external user please contact your partner team representative for help setting this up in your own account. Once you've got your custom Windows 10 image the process is pretty simple:
 
-1. Enter your Azure Dev/Test lab page on the Azure portal.
+1. Login to your Azure Portal.
+1. From the All Services page, select DevTest Labs.
 1. Click on the blue plus sign at the top of the page: `+Add`
 1. Browse to the standard SE training workstation image. It's named `selabworkstation`. This is a shared Azure Image Gallery image that is published to all supported regions.
 1. Give the virtual machine a name. Pick something simple and short, preferably without special characters.
