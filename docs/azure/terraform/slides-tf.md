@@ -378,12 +378,12 @@ Terraform vs. JSON
 <br><br><br>
 ARM JSON:
 ```json
-"name": "[concat(parameters('PilotServerName'), '3')]",
+"name": "[concat(parameters('PilotServerName'), '-vm')]",
 ```
 
 Terraform:
 ```hcl
-name = "${var.PilotServerName}3"
+name = "${var.PilotServerName}-vm"
 ```
 
 Terraform code (HCL) is easy to learn and easy to read. It is also 50-70% more compact than an equivalent JSON configuration.
