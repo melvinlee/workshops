@@ -372,12 +372,17 @@ Terraform vs. JSON
 <br><br><br>
 CloudFormation JSON:
 ```json
-{ "Fn::Join" : [ "delimiter", [ PilotServerName,3 ] ] }
+"Tags": [{
+            "Key": "Name",
+            "Value": { "Fn::Join:": ["-", [{ "Ref": "ServerName" }, "vm"]] }
+         }]
 ```
 
 Terraform:
 ```hcl
-name = "${var.PilotServerName}3"
+tags {
+  Name = "${var.ServerName}-vm"
+}
 ```
 
 Terraform code (HCL) is easy to learn and easy to read. It is also 50-70% more compact than an equivalent JSON configuration.
