@@ -702,7 +702,7 @@ In this lab exercise you will enable Terraform remote state on your workstation.
 
 * A User Access Token for your config file
 * A **terraform.rc** file located at `%APPDATA%\terraform.rc`
-* A **remote_backend.tf** file in the hashicat-azure folder
+* A **remote_backend.tf** file in your workspace
 
 Explore the Terraform Enterprise UI and find your user settings. From there, figure out how to generate a token.
 
@@ -719,7 +719,7 @@ Use the examples on the previous slide for reference.
 ???
 %APPDATA% is a shortcut on Windows to your application data directory. You can also go directly to `C:\Users\hashicorp\AppData\Roaming`.
 
-We've provided a sample remote_backend.tf file that you can use to get started. It's called remote_backend.tf.disabled.
+We've provided a sample remote_backend.tf file that you can use to get started. It's located in the 'exercises' subdirectory. Copy it into your workspace along with all the other *.tf files.
 
 ---
 name: chapter-4-tfe-lab-solution-1
@@ -736,7 +736,7 @@ credentials "app.terraform.io" {
 }
 ```
 
-* Rename the **remote_backend.tf.disabled** file to **remote_backend.tf**. It should contain the following code. Replace ORGNAME and YOURWORKSPACE with your own settings.
+* Move or copy the `exercises/remote_backend.tf` file into your workspace directory. It should contain the following code. Replace ORGNAME and YOURWORKSPACE with your own settings.
 
 ```hcl
 terraform {
