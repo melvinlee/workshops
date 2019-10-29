@@ -8,7 +8,7 @@ Build Azure Resources With Infrastructure as Code
 
 ???
 <!---
-Azure Terraform Vault Workshop - Part 1
+Azure Terraform Workshop - Part 1
 Terraform for Beginners on Azure
 
 This slide presentation is stored as Markdown code, specifically using the RemarkJS engine to render it. All standard markdown tags are supported, and you can also use some HTML within this document. 
