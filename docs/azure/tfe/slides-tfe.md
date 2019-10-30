@@ -636,7 +636,7 @@ Create a New Workspace
 -------------------------
 .center[![:scale 80%](images/create_workspace_gui_new.png)]
 
-You must create a workspace before migrating to remote state. You can skip the VCS step, because we aren't using our VCS system yet.
+You must create a workspace before migrating to remote state. Click on the "No VCS Connection" button. We are not connecting a source code repo yet.
 
 ---
 name: create-a-workspace-gui-2
