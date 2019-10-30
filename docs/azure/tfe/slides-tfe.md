@@ -1954,23 +1954,9 @@ In this chapter we:
 name: before-you-go
 Before You Go...
 -------------------------
-Please run **`terraform destroy`** command to delete your lab environment(s) before you go. This helps us keep our cloud costs under control.
+Please queue a Destroy action in your workspace to delete your lab environment(s) before you go. This helps us keep our cloud costs under control.
 
-Command:
-```powershell
-terraform destroy
-```
-
-Output:
-```tex
-Do you really want to destroy all resources?
-  Terraform will destroy all your managed infrastructure, as shown above.
-  There is no undo. Only 'yes' will be accepted to confirm.
-
-  Enter a value: yes
-
-Destroy complete! Resources: 15 destroyed.
-```
+.center[![:scale 80%](images/destroy_gui.png)]
 
 ---
 name: Feedback-Survey
