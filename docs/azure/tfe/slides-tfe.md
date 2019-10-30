@@ -1566,7 +1566,9 @@ Back in TFE, under your Organization Settings, click on **Policy Sets** and then
 name: create-policy-set-2
 Select the Sentinel Repo
 -------------------------
-.center[![:scale 90%](images/your_fork.png)]
+.center[![:scale 80%](images/your_fork.png)]
+Call your new policy set **my-policy-set**. You don't need to create a description so leave that blank for now.
+
 Scroll down a bit to the **Repository** box. If you click on it you'll get a pulldown menu of available git repos. Select your fork of the tfe-workshop-sentinel repo.
 
 ---
