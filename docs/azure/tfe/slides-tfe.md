@@ -1448,17 +1448,11 @@ TODO: Add another lab exercise in here, give the students more experience with V
 name: destroy-your-application
 Destroy Your Application
 -------------------------
-Either from the command line, or the GUI, destroy your web application. We're going to rebuild it from our code repo in the next chapter.
+.center[![:scale 80%](images/destroy_gui.png)]
 
-Command Line:
-```powershell
-terraform destroy -auto-approve
-```
+Go into the Destruction and Deletion settings for your workspace and queue up a Destroy plan. Remember that you'll need a `CONFIRM_DESTROY` environment variable in order to enable this.
 
-GUI:
-.center[![:scale 100%](images/destroy_gui.png)]
-
-Do not click the red Destroy from Terraform Enterprise button. This will delete your entire workspace. Remember to confirm the destroy action from within the UI.
+Do not click the red Destroy from Terraform Cloud button. This will delete your entire workspace. Remember to confirm the destroy action from within the UI.
 
 ---
 name: tfe-chapter-6-review
