@@ -1900,6 +1900,10 @@ module "web_app_container" {
   resource_group_name = "${azurerm_resource_group.myresourcegroup.name}"
   container_type      = "docker"
   container_image     = "scarolan/palacearcade"
+  plan = {
+    sku_size = "B1"
+    name     = "${var.prefix}-plan"
+  }
 }
 
 output "container_app_url" {
@@ -1907,11 +1911,7 @@ output "container_app_url" {
 }
 ```
 
-Commit your code and push your changes to the remote repo. This will trigger a terraform run. You should have a new application URL in the output:
-
-```hcl
-container_app_url = http://yourprefix.azurewebsites.net
-```
+Commit your code and push your changes to the remote repo. This will trigger a terraform run. You'll see the URL of your new container webapp in the Terraform output.
 
 ???
 At this point they should have the hang of this:
