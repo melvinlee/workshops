@@ -10,7 +10,7 @@ control 'os-release' do
     it { should eq 'windows' }
   end
   describe os.release do
-    it { should eq '10.0.16299' }
+    it { should eq '10.0.18362' }
   end
 end
 
