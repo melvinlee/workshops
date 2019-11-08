@@ -265,7 +265,7 @@ source post_launch_setup_aws.sh
 name: tfe-workstation-setup-editor
 Choose an Editor
 -------------------------
-
+<br><br><br>
 * **Linux workstations** provided by your instructor will have both **`vim`** and **`nano`** installed by default, with each one having an HCL syntax highlighter for usage with Terraform. For accessibility's sake, we'll use **`nano`** as the example editor for the rest of this workshop.
 
 * **Window workstations** will have Visual Studio Code pre-installed. You may get a pop up asking you to install the Terraform extensions. **This is recommended**
@@ -374,7 +374,7 @@ aws_vpc.hashicat-aws: Creating...
 
 Outputs:
 
-catapp_url = http://52.26.237.59
+catapp_url = http://ndahlke-hashicat-90211a7912a91be6.workshop.aws.hashidemos.io
 ```
 
 
@@ -417,7 +417,7 @@ Here's an example where we simply override variables on the command line:
 
 Commands:
 ```bash
-terraform apply -var placeholder=placebear.com -var height=500 -var width=500
+terraform apply -var placeholder=placebear.com -var height=500 -var width=500 -auto-approve
 ```
 
 Try some different placeholder image sites. Here are some examples: [placedog.net](http://placedog.net), [placebear.com](http://placebear.com), [www.fillmurray.com](http://www.fillmurray.com), [www.placecage.com](http://www.placecage.com), [placebeard.it](http://placebeard.it), [loremflickr.com](http://loremflickr.com), [baconmockup.com](http://baconmockup.com), and [placeimg.com](http://placeimg.com).
