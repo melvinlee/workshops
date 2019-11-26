@@ -12,11 +12,12 @@ If you have access to the HashiCorp Azure Demo environment, you can simply brows
 
 1. Login to your Azure Portal.
 1. From the All Services page, select DevTest Labs.
+1. Clilck on the 'se-training-lab' resource group.
 1. Click on the blue plus sign at the top of the page: `+Add`
 1. Browse to the standard SE training workstation image. It's named `selabworkstation`. This is a shared Azure Image Gallery image that is published to all supported regions.
 1. Give the virtual machine a name. Pick something simple and short, preferably without special characters.
 1. For user name enter `hashicorp`
-1. For the password you can set your own. Make sure it meets the complexity requirements for Windows 10.
+1. Uncheck the 'Use a saved secret' option an set a password. Make sure it meets the complexity requirements for Windows 10.
 1. Under more options, click *Change Size* and select the *B2ms* class of machine. This size has 8GB of RAM which is enough for Windows 10.
 1. Back up at the top click on Advanced Settings.
 1. Change the ip address type to *Public*.
