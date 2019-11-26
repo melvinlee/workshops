@@ -23,7 +23,8 @@ If you have access to the HashiCorp Azure Demo environment, you can simply brows
 1. Change the ip address type to *Public*.
 1. Set a deletion date. This is the date when your lab machines will be destroyed. 
 1. Set the number of instances to the number of participants in your workshop, plus a few extras just in case.
-1. Hit the Submit button at the bottom.
+1. Click back to 'Basic Settings'.
+1. Click the 'Create' button at the bottom.
 1. Wait about 15-20 minutes. When your machines are done building you'll see a little notification icon in the upper right corner.
 1. Distribute the public URLs, username, and password to your students.
 
