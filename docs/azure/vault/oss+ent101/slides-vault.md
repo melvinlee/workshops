@@ -17,7 +17,7 @@ The Slide Deck
 .center[
 Follow along on your own computer at this link:
 
-https://bit.ly/hashiazure
+https://bit.ly/359nM39
 =========================
 ]
 
@@ -200,11 +200,11 @@ name: chapter-1-exercise-1
 <br>
 ### Connect to Azure and Setup Environment
 * If you completed Terraform 101 workshop, you should be ready to go for this class
-* Otherwise, connect into Azure Portal, open cloudshell, git clone this repo, cd into exercises/azure/vault/chapter1 and run terraform init/terraform apply
+* Otherwise, connect into Azure Portal, open cloudshell, git clone this repo, cd into solutions/azure/terraform/chapter5 and run terraform init/terraform apply
 - https://portal.azure.com
 - Open Cloud Shell
-- git clone https://github.com/hashicorp/se-terraform-vault-workshp
-- cd hashicorp_azure_training/solutions/azure/vault/oss+ent101/chapter5
+- git clone https://github.com/hashicorp/workshops
+- cd workshops/solutions/azure/terraform/oss+ent101/chapter5
 - `terraform init`
 - `terraform apply`
 
