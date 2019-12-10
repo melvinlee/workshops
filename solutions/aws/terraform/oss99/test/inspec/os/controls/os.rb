@@ -10,7 +10,7 @@ control 'os-release' do
     it { should eq 'windows' }
   end
   describe os.release do
-    it { should eq '10.0.16299' }
+    it { should eq '10.0.18362' }
   end
 end
 
@@ -55,7 +55,7 @@ control 'vsc-version' do
   impact 1.0
   desc 'Checks to see that Visual Studio Code is installed and working.'
   describe powershell('code --version') do
-    its('stdout') { should match(/1.38.0/) }
+    its('stdout') { should match(/1.39.2/) }
   end
 end
 

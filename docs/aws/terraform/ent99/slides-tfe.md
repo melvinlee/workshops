@@ -228,7 +228,7 @@ Log Onto Your Workstation
 
 Your instructor will provide you with RDP/SSH credentials for your cloud based workstation.
 
-* For Windows based workstations you can use any RDP client to connect.  
+* For Windows based workstations you can use any RDP client to connect.
 
   ** Note: ** The workstations should be configured to accept RDP sessions on ports 3389, 80, and 443.
   If you have trouble connecting try a different port.
@@ -236,7 +236,7 @@ Your instructor will provide you with RDP/SSH credentials for your cloud based w
 * For Linux based workstations you will connect using a command similar to this:
 
   ```bash
-  ssh -i ~/.ssh/id_rsa ubuntu@52.37.89.245
+  ssh -i ~/.ssh/id_rsa ubuntu@acme-1.workshops.aws.hashidemos.io
   ```
 
 ???
@@ -265,7 +265,7 @@ source post_launch_setup_aws.sh
 name: tfe-workstation-setup-editor
 Choose an Editor
 -------------------------
-
+<br><br><br>
 * **Linux workstations** provided by your instructor will have both **`vim`** and **`nano`** installed by default, with each one having an HCL syntax highlighter for usage with Terraform. For accessibility's sake, we'll use **`nano`** as the example editor for the rest of this workshop.
 
 * **Window workstations** will have Visual Studio Code pre-installed. You may get a pop up asking you to install the Terraform extensions. **This is recommended**
@@ -374,7 +374,7 @@ aws_vpc.hashicat-aws: Creating...
 
 Outputs:
 
-catapp_url = http://52.26.237.59
+catapp_url = http://ndahlke-hashicat-90211a7912a91be6.workshop.aws.hashidemos.io
 ```
 
 
@@ -417,7 +417,7 @@ Here's an example where we simply override variables on the command line:
 
 Commands:
 ```bash
-terraform apply -var placeholder=placebear.com -var height=500 -var width=500
+terraform apply -var placeholder=placebear.com -var height=500 -var width=500 -auto-approve
 ```
 
 Try some different placeholder image sites. Here are some examples: [placedog.net](http://placedog.net), [placebear.com](http://placebear.com), [www.fillmurray.com](http://www.fillmurray.com), [www.placecage.com](http://www.placecage.com), [placebeard.it](http://placebeard.it), [loremflickr.com](http://loremflickr.com), [baconmockup.com](http://baconmockup.com), and [placeimg.com](http://placeimg.com).
@@ -640,20 +640,23 @@ Go into the **General** settings for your workspace and change the execution mod
 name: chapter-4-tfe-lab
 .center[.lab-header[👩🏽‍🔬 Lab Exercise 4: Enable Remote State]]
 <br><br>
-
 In this lab exercise you will enable Terraform remote state on your workstation. There are three ingredients you'll need to make it work:
 
 * A User Access Token for your config file
 * A **terraform.rc** file located at `%APPDATA%\terraform.rc` (`~/.terraformrc` for Linux)
 * A **remote_backend.tf** file in the hashicat-aws folder
 
-Explore the Terraform Enterprise UI and find your user settings. From there, figure out how to generate a token.
+We provided a remote_backend.tf.disabled and terraform.rc.example file. Find your user settings in the Terraform Enterprise UI and figure out how to generate a token. Once you have a token, create your terraform RC file.
 
-Once you have a token, create your terraform.rc file. Here's an easy way to do that from your Powershell terminal:
+Bash:
+```bash
+touch ~/.terraformrc
+```
+
+Powershell:
 ```powershell
 code $env:APPDATA/terraform.rc
 ```
-As a starting point we've provided a remote_backend.tf.disabled and terraform.rc.example file
 
 ???
 %APPDATA% is a shortcut on Windows to your application data directory. You can also go directly to `C:\Users\hashicorp\AppData\Roaming`.
@@ -775,17 +778,20 @@ Protecting Sensitive Variables
 name: where-are-your-creds
 Where Are Your API Keys?
 -------------------------
+<br><br>
 Terraform requires credentials in order to communicate with your cloud provider's API. These API keys should never, ever be stored directly in your terraform code. Config files and environment variables are a better option, but the credentials still live on your workstation, usually stored in plaintext.
 
-Try these commands on from PowerShell to view your API credentials
+Try these commands to view your API credentials.
 
-Access Key ID:
+Bash
 ```bash
-echo $env:AWS_ACCESS_KEY_ID
+echo $AWS_ACCESS_KEY_ID
+echo $AWS_SECRET_ACCESS_KEY
 ```
 
-Secret Access Key:
-```bash
+PowerShell
+```powershell
+echo $env:AWS_ACCESS_KEY_ID
 echo $env:AWS_SECRET_ACCESS_KEY
 ```
 
@@ -1066,7 +1072,7 @@ name: chapter-6-tfe-lab
 <br><br><br><br><br>
 The Networking Team has a new requirement: All VPCs must have tags and must have `enable_dns_hostnames` set to `true`.
 
-We have implemented a policy that disallows an AWS instance to be launched without a tags or with `enable_dns_hostnames` set to false.
+We have implemented a policy that disallows an AWS instance to be launched without tags or with `enable_dns_hostnames` set to `false`.
 
 Fix the code on your local workstation so that it passes the Sentinel check and run `terraform apply`.
 
@@ -1358,16 +1364,15 @@ Terraform is a multi-platform tool and can be run on Mac or Windows, Bash or Pow
 
 ---
 name: install-terraform-helper-0
-Install the Terraform Helper Tool
+Install the Terraform Helper Tool (Linux)
 -------------------------
 Terraform Helper is a command line tool that makes it easier to manage Terraform Enterprise workspaces and variables. The source code can be found at the following URL:
 
 https://github.com/hashicorp-community/tf-helper
 
-**Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat-azure/files** directory. You may simply copy and paste the commands below:
+**Step 1**: Run the **`install_tfh.sh`** script inside of the **hashicat-aws/files** directory. You may simply copy and paste the commands below:
 
 ```bash
-cp /c/Users/hashicorp/AppData/Roaming/terraform.rc ~/.terraformrc
 cd ~/hashicat-aws/files
 ./install_tfh.sh
 source ~/.bash_profile
@@ -1393,18 +1398,23 @@ Command:
 tfh curl-config -tfrc
 ```
 
-Output:
+Bash Output:
 ```bash
+/home/ubuntu/.tfh/curlrc generated from /home/ubuntu/.terraformrc
+```
+
+Powershell Output:
+```powershell
 /c/Users/hashicorp/.tfh/curlrc generated from /c/Users/hashicorp/.terraformrc
 ```
 
 Now you are ready to use the **`tfh`** command line tool. Proceed to the next slide.
 
 ---
-name: chapter-6b-tfe-lab
-.center[.lab-header[⚗️ Lab Exercise 6b: Upload Variables]]
+name: chapter-7b-tfe-lab
+.center[.lab-header[⚗️ Lab Exercise 7b: Upload Variables]]
 <br><br>
-You'll need to recreate the environment variables and terraform variables in your workspace. This is fairly easy to do with the Terraform Helper tool. Run the following command, and _don't forget to change **yourprefix** to your own prefix_. The rest of the command can remain the same.
+You'll need to recreate the environment variables and terraform variables in your workspace. This is fairly easy to do with the Terraform Helper tool. Run the following command, and _don't forget to change **prefix** to your own prefix_. The rest of the command can remain the same.
 
 Command:
 ```bash
@@ -1702,7 +1712,7 @@ Comment out your entire **outputs.tf** file too:
 
 ```hcl
 # output "catapp_url" {
-  # value = "http://${aws_eip.hashicat.public_ip}"
+  # value = "http://${aws_route53_record.hashicat.fqdn}"
 # }
 ```
 Save both files, commit them to git, and push to your remote repository. This will reset your environment by removing all resources we have created.
@@ -1754,10 +1764,10 @@ name: chapter-10a-tfe-lab
 <br><br><br>
 This is an individual lab.
 
-1. Visit the Terraform public module registry and navigate to the [AWS ECS Fargate Module](https://registry.terraform.io/modules/jnonino/ecs-fargate/aws/2.0.4).
+1. Visit the Terraform public module registry and navigate to the [AWS Workshop Fargate Module]().
 2. Find the GitHub source code link on the page and click on it.
 3. Fork the module repo into your own GitHub account
-4. Back in your TFE organization, navigate to the **modules** section and add the Azure Compute module to your private registry.
+4. Back in your TFE organization, navigate to the **modules** section and add the AWS ECS Fargate Module to your private registry.
 
 ???
 Updated to deploy an arcade game in a container.
@@ -1777,16 +1787,18 @@ Use a Public Module
 Add the following code to your main.tf file, right below the provider.
 
 ```terraform
-module "networking" {
-  source                                      = "jnonino/networking/aws"
-  version                                     = "2.0.3"
-  name_preffix                                = "base"
-  profile                                     = "aws_profile"
-  region                                      = "us-west-2"
-  vpc_cidr_block                              = "192.168.0.0/16"
-  availability_zones                          = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
-  public_subnets_cidrs_per_availability_zone  = ["192.168.0.0/19", "192.168.32.0/19", "192.168.64.0/19", "192.168.96.0/19"]
-  private_subnets_cidrs_per_availability_zone = ["192.168.128.0/19", "192.168.160.0/19", "192.168.192.0/19", "192.168.224.0/19"]
+
+provider "aws" {
+  region = "us-west-2"
+}
+
+module "s3" {
+  source  = "opsmag/s3/aws"
+  version = "0.1.0"
+  environment = "workshop"
+  company_name = "hc-se-workshop"
+  bucket_name = "YOUR_NAME"
+  region = "us-west-2"
 }
 ```
 
@@ -1796,28 +1808,19 @@ module "networking" {
 name: use-a-private-module
 Use a Private (Your) Module
 -------------------------
+<br><br>
 Add the following code to your main.tf file, right below the `networking` module. Be sure to replace **`YOURORGNAME`** with your own organization name.
 
 ```terraform
-module "ecs-fargate" {
-  source                       = "app.terraform.io/YOURORGNAME/ecs-fargate/aws"
-  version                      = "2.0.4"
-  name_preffix                 = "${var.prefix}"
-  profile                      = "aws_profile"
-  region                       = "${var.region}"
-  vpc_id                       = "${module.networking.vpc_id}"
-  availability_zones           = "${module.networking.availability_zones}"
-  public_subnets_ids           = "${module.networking.public_subnets_ids}"
-  private_subnets_ids          = "${module.networking.private_subnets_ids}"
-  container_name               = "${var.prefix}"
-  container_image              = "scarolan/palacearcade:latest"
-  essential                    = true
-  container_port               = 80
-  environment                  = []
+module "workshop-fargate" {
+  source        = "app.terraform.io/hc-se-tfe-demo-neil/workshop-fargate/aws"
+  version       = "0.0.2"
+  prefix        = "YOUR_NAME"
+  bucket_name   = "${module.s3.s3_bucket_id}"
 }
 
-output "lb_dns_name" {
-    value = "${module.ecs-fargate.lb_dns_name}"
+output "alb_dns_name" {
+    value = "${module.workshop-fargate.alb_dns_name}"
 }
 ```
 
@@ -1829,7 +1832,7 @@ Run and View Your App Composed of Modules
 Commit your code and push your changes to the remote repo. This will trigger a Terraform run. You should have a new application URL in the output:
 
 ```hcl
-lb_dns_name = neil-test-lb-934610893.us-west-2.elb.amazonaws.com
+alb_dns_name = neil-lb-934610893.us-west-2.elb.amazonaws.com
 ```
 ???
 Instructor note: You might see a git error message when you try to push. This is because your partner pushed changes to your repo, and you need to **`git pull`** his or her changes before you proceed.
@@ -1921,8 +1924,8 @@ https://www.hashicorp.com/resources/why-consider-terraform-enterprise-over-open-
 Terraform Enterprise Docs
 https://www.terraform.io/docs/enterprise/index.html
 
-Terraform Azurerm Provider Documentation
-https://www.terraform.io/docs/providers/azurerm/
+Terraform AWS Provider Documentation
+https://www.terraform.io/docs/providers/aws/
 
 Link to this Slide Deck
 https://bit.ly/hashiazure

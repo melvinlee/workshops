@@ -636,7 +636,7 @@ Create a New Workspace
 -------------------------
 .center[![:scale 80%](images/create_workspace_gui_new.png)]
 
-You must create a workspace before migrating to remote state. You can skip the VCS step, because we aren't using our VCS system yet.
+You must create a workspace before migrating to remote state. Click on the "No VCS Connection" button. We are not connecting a source code repo yet.
 
 ---
 name: create-a-workspace-gui-2
@@ -702,7 +702,7 @@ In this lab exercise you will enable Terraform remote state on your workstation.
 
 * A User Access Token for your config file
 * A **terraform.rc** file located at `%APPDATA%\terraform.rc`
-* A **remote_backend.tf** file in the hashicat-azure folder
+* A **remote_backend.tf** file in your workspace
 
 Explore the Terraform Enterprise UI and find your user settings. From there, figure out how to generate a token.
 
@@ -719,7 +719,7 @@ Use the examples on the previous slide for reference.
 ???
 %APPDATA% is a shortcut on Windows to your application data directory. You can also go directly to `C:\Users\hashicorp\AppData\Roaming`.
 
-We've provided a sample remote_backend.tf file that you can use to get started. It's called remote_backend.tf.disabled.
+We've provided a sample remote_backend.tf file that you can use to get started. It's located in the 'exercises' subdirectory. Copy it into your workspace along with all the other *.tf files.
 
 ---
 name: chapter-4-tfe-lab-solution-1
@@ -736,7 +736,7 @@ credentials "app.terraform.io" {
 }
 ```
 
-* Rename the **remote_backend.tf.disabled** file to **remote_backend.tf**. It should contain the following code. Replace ORGNAME and YOURWORKSPACE with your own settings.
+* Move or copy the `exercises/remote_backend.tf` file into your workspace directory. It should contain the following code. Replace ORGNAME and YOURWORKSPACE with your own settings.
 
 ```hcl
 terraform {
@@ -1448,17 +1448,11 @@ TODO: Add another lab exercise in here, give the students more experience with V
 name: destroy-your-application
 Destroy Your Application
 -------------------------
-Either from the command line, or the GUI, destroy your web application. We're going to rebuild it from our code repo in the next chapter.
+.center[![:scale 80%](images/destroy_gui.png)]
 
-Command Line:
-```powershell
-terraform destroy -auto-approve
-```
+Go into the Destruction and Deletion settings for your workspace and queue up a Destroy plan. Remember that you'll need a `CONFIRM_DESTROY` environment variable in order to enable this.
 
-GUI:
-.center[![:scale 100%](images/destroy_gui.png)]
-
-Do not click the red Destroy from Terraform Enterprise button. This will delete your entire workspace. Remember to confirm the destroy action from within the UI.
+Do not click the red Destroy from Terraform Cloud button. This will delete your entire workspace. Remember to confirm the destroy action from within the UI.
 
 ---
 name: tfe-chapter-6-review
@@ -1572,7 +1566,9 @@ Back in TFE, under your Organization Settings, click on **Policy Sets** and then
 name: create-policy-set-2
 Select the Sentinel Repo
 -------------------------
-.center[![:scale 90%](images/your_fork.png)]
+.center[![:scale 80%](images/your_fork.png)]
+Call your new policy set **tfe-workshop-sentinel**. You don't need to create a description so leave that blank for now.
+
 Scroll down a bit to the **Repository** box. If you click on it you'll get a pulldown menu of available git repos. Select your fork of the tfe-workshop-sentinel repo.
 
 ---
@@ -1904,6 +1900,10 @@ module "web_app_container" {
   resource_group_name = "${azurerm_resource_group.myresourcegroup.name}"
   container_type      = "docker"
   container_image     = "scarolan/palacearcade"
+  plan = {
+    sku_size = "B1"
+    name     = "${var.prefix}-plan"
+  }
 }
 
 output "container_app_url" {
@@ -1911,11 +1911,7 @@ output "container_app_url" {
 }
 ```
 
-Commit your code and push your changes to the remote repo. This will trigger a terraform run. You should have a new application URL in the output:
-
-```hcl
-container_app_url = http://yourprefix.azurewebsites.net
-```
+Commit your code and push your changes to the remote repo. This will trigger a terraform run. You'll see the URL of your new container webapp in the Terraform output.
 
 ???
 At this point they should have the hang of this:
@@ -1958,23 +1954,9 @@ In this chapter we:
 name: before-you-go
 Before You Go...
 -------------------------
-Please run **`terraform destroy`** command to delete your lab environment(s) before you go. This helps us keep our cloud costs under control.
+Please queue a Destroy action in your workspace to delete your lab environment(s) before you go. This helps us keep our cloud costs under control.
 
-Command:
-```powershell
-terraform destroy
-```
-
-Output:
-```tex
-Do you really want to destroy all resources?
-  Terraform will destroy all your managed infrastructure, as shown above.
-  There is no undo. Only 'yes' will be accepted to confirm.
-
-  Enter a value: yes
-
-Destroy complete! Resources: 15 destroyed.
-```
+.center[![:scale 80%](images/destroy_gui.png)]
 
 ---
 name: Feedback-Survey
