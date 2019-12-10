@@ -1295,7 +1295,7 @@ name: chapter-3-exercise-3
 * Set defaults for each variable as follows:
  * location = eastus
  * tags = {}
- * vault binary url = http://hc-enterprise-binaries.s3.amazonaws.com/vault/ent/1.1.1/vault-enterprise_1.1.1%2Bent_linux_amd64.zip
+ * vault binary url = https://releases.hashicorp.com/vault/1.3.0+ent/vault_1.3.0+ent_linux_amd64.zip
 * Update main.tf file to use Azure location variable for the Resource Group.
 
 https://www.terraform.io/docs/configuration/variables.html  
@@ -1322,7 +1322,7 @@ name: chapter-3-exercise-5
 * Update the Resource Group with the tags local.
 
 https://www.terraform.io/docs/configuration/locals.html  
-https://www.terraform.io/docs/configuration/functions.html
+https://www.terraform.io/docs/configuration/functions/merge.html
 <br><br><br><br><br><br><br><br><br>
 .footnote[.right[[s](https://github.com/hashicorp/se-terraform-vault-workshop/tree/master/solutions/azure/terraform/oss+ent101/chapter)]]
 
@@ -1423,7 +1423,7 @@ https://www.terraform.io/docs/providers/azurerm/d/client_config.html
 ### Template File Data Resources
 * Download the below code into a file called setupvault.tpl. Then create a data template_file to pass vault_url variable.
 
-[setupvault.tpl](https://raw.githubusercontent.com/chrismatteson/hashicorp_azure_training/master/exercises/exercise4/setupvault.tpl)
+[setupvault.tpl](https://raw.githubusercontent.com/hashicorp/workshops/master/exercises/exercise4/setupvault.tpl)
 
 https://www.terraform.io/docs/providers/template/d/file.html  
 
@@ -1771,12 +1771,10 @@ Create an Organization
 -------------------------
 .center[![:scale 70%](images/sandbox.png)]
 
-Create a new organization. Name it with a prefix which the instructor will provide and your name **prefix-yourname**. We'll be using this later in the training.
+Create a new organization.
 
 ???
-**Okay, now everybody should create a new organization. Write those down too so I can upgrade them to trial organizations. This will just take a moment.**
-
-Instructors, provide a unique prefix based on the course for everyone to include in their organization name. Then ask students to provide you their organization names. You'll need to go into the admin console and upgrade them all to trial organizations.
+**Okay, everyone should create a new organization.**
 
 ---
 name: why-remote-state
@@ -1848,7 +1846,8 @@ name: chapter-6-exercise-1
 .center[.lab-header[Chaper 6: Exercise 1]]
 ### Create Terraform Enterprise User and Organization
 * Create a Terraform Enterprise trial account.
-* Create a new organization, make sure to include the provided prefix in the name.
+* Create a new organization.
+* Upgrade the organization to Enterprise trial via Settings -> General -> Request Preview Access.
 * Create an API key for your user.
 * Provide the name of the organization to the instructor.
 
@@ -2047,7 +2046,7 @@ name: chapter-8-exercise-2
 .center[.lab-header[Chapter 8: Exercise 2]]
 ### Create a New Sentinel Policy
 * Create new Sentinel policy called**restrict_allowed_vm_types**.
-* Copy the following Sentinel code into your policy: [restrict_allowed_vm_types.hcl](https://raw.githubusercontent.com/chrismatteson/hashicorp_azure_training/docs/exercises/exercise7/restrict_allowed_vm_types.hcl)
+* Copy the following Sentinel code into your policy: [restrict_allowed_vm_types.hcl](https://raw.githubusercontent.com/hashicorp/workshops/docs/exercises/exercise7/restrict_allowed_vm_types.hcl)
 * Create a new policy set that applies to your workspace 
 * Add the **restrict_allowed_vm_types** policy you created in the previous step to your policy set.
 * Run a new Terraform plan and apply and see the Sentinel results
