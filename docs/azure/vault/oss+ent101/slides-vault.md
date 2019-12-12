@@ -339,10 +339,8 @@ Reminder: This is a lab training environment and we are doing some things here t
 ---
 name: chapter-2-exercise-1
 .center[.lab-header[Chapter 2: Exercise 1]]
-### Connect to Vault
-* Run commands from outputs to install and configure vault agent
-
 ### Deploy Vault
+* SSH into Vault Server using credentials from the outputs
 * Initialize, Unseal, and Authenticate to Vault using the initial root token.
 * View status of vault
 * Lookup token information
@@ -353,7 +351,7 @@ https://www.vaultproject.io/docs/commands/token/lookup.html
 
 `HINT 1: Vault CLI assumes Vault is installed on the localhost using TLS. Google VAULT_ADDR environment variable to see how to change that setting`
 
-`HINT 2: Copy the unseal keys and initial root token somewhere incase you need to use them again`
+`HINT 2: Copy the unseal keys and initial root token somewhere safe`
 
 `HINT 3: Vault Enterprise will shutdown after 30 minutes without a license file and error out during the unseal process. If this occurs to you, run "sudo service vault restart`
 
@@ -368,6 +366,8 @@ name: chapter-2-exercise-2
 * Verify that vault license is installed
 
 https://www.vaultproject.io/api/system/license.html  
+
+`HINT 1: The license can also be installed from the UI or by writing to the sys/license path with text=<license>`
 <br><br><br>
 .footnote[.right[[s](https://github.com/hashicorp/se-terraform-vault-workshop/tree/master/solutions/azure/vault/oss+ent101/chapter2)]]
 ???

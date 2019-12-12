@@ -1552,15 +1552,14 @@ name: chapter-5-exercise-2
 .center[.lab-header[Chapter 5: Exercise 2]]
 ### Virtual Machine
 * Create an Azure Virtual Machine to use the resource group, network interface, and template_file as custom_data, which were created in prior exercises.
-* Add the MSI virtual machine extension to the VM.
 
 https://www.terraform.io/docs/providers/azurerm/r/virtual_machine.html  
-https://www.terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html  
 https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview  
 
 `HINT 1: Use vm_size Standard_A2_v2.`
 
-`HINT 2: Use the publisher "Microsoft.ManagedIdentity", the type "ManagedIdentityExtensionForLinux" and type_handler_version "1.0"`
+`HINT 2: Include the following line in the terraform code for the virtual machine:
+identity { type = "SystemAssigned" }`
 
 .footnote[.right[[s](https://github.com/hashicorp/workshop/tree/master/solutions/azure/terraform/oss+ent101/chapter5)]]
 
