@@ -1848,7 +1848,6 @@ name: chapter-6-exercise-1
 * Create a new organization.
 * Upgrade the organization to Enterprise trial via Settings -> General -> Request Preview Access.
 * Create an API key for your user.
-* Provide the name of the organization to the instructor.
 
 https://app.terraform.io/signup/account
 https://www.hashicorp.com/resources/why-consider-terraform-enterprise-over-open-source  

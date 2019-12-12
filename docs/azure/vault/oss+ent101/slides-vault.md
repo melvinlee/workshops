@@ -1046,7 +1046,7 @@ name: Chapter-8
 class: center,middle
 .section[
 Chapter 8  
-Namespaces and Sentinel
+Enterprise Workflow Features
 ]
 
 ---
@@ -1067,6 +1067,22 @@ Sentinel
 Go beyond ACLs to manage policies
 * Restrict times when changes can be made
 * Restrict IP ranges where changes can come from
+
+---
+name: MFA
+Multi-factor Authentication
+-------------------------
+Enforce MFA for certain paths
+* MFA is possible in OSS with Okta
+* Enterprise allows MFA to be enforable only for sensative actions
+
+---
+name: ControlGroups
+Control Groups
+-------------------------
+Require approvals for certain actions
+* Similiar security model to Shamir
+* Provides an extra level of security for sensative actions
 
 ---
 name: chapter-8-exercise
@@ -1091,6 +1107,7 @@ name: chapter-8-review
 .contents[
 * Namespaces
 * Sentinel
+* Control Groups
 ]
 
 ---
