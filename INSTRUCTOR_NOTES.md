@@ -12,19 +12,22 @@ If you have access to the HashiCorp Azure Demo environment, you can simply brows
 
 1. Login to your Azure Portal.
 1. From the All Services page, select DevTest Labs.
+1. Clilck on the 'se-training-lab' resource group.
 1. Click on the blue plus sign at the top of the page: `+Add`
 1. Browse to the standard SE training workstation image. It's named `selabworkstation`. This is a shared Azure Image Gallery image that is published to all supported regions.
-1. Give the virtual machine a name. Pick something simple and short, preferably without special characters.
+1. Give the virtual machine a name. This becomes the VM/DNS prefix. Pick something simple and short, preferably without special characters.
 1. For user name enter `hashicorp`
-1. For the password you can set your own. Make sure it meets the complexity requirements for Windows 10.
+1. Uncheck the 'Use a saved secret' option an set a password. Make sure it meets the complexity requirements for Windows 10.
 1. Under more options, click *Change Size* and select the *B2ms* class of machine. This size has 8GB of RAM which is enough for Windows 10.
 1. Back up at the top click on Advanced Settings.
 1. Change the ip address type to *Public*.
 1. Set a deletion date. This is the date when your lab machines will be destroyed. 
 1. Set the number of instances to the number of participants in your workshop, plus a few extras just in case.
-1. Hit the Submit button at the bottom.
+1. Click back to 'Basic Settings'.
+1. Click the 'Create' button at the bottom.
 1. Wait about 15-20 minutes. When your machines are done building you'll see a little notification icon in the upper right corner.
-1. Distribute the public URLs, username, and password to your students.
+1. Resulting DNS names (for use with RDP connection) will follow the structure `<PREFIX>000.centralus.cloudapp.azure.com` and will increment (e.g., <PREFIX>000, <PREFIX>001, and so on).
+1. Distribute the public DNS, username, and password to your students.
 
 ### Optional Workstation DNS Names:
 Use the se-classroom-lab terraform code to give your workstations custom *hashidemos.io* DNS names: https://github.com/hashicorp/se-classroom-lab
