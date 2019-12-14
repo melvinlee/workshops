@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt-get install -y unzip jq
-# apt-get install -y libtool libltdl-dev 
+sudo apt-get install -y unzip
+sudo apt-get install -y jq
 
 USER="vault"
 COMMENT="Hashicorp vault user"

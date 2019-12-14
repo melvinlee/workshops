@@ -54,9 +54,9 @@ data "template_file" "setup" {
 }
 
 resource "azurerm_virtual_machine" "main" {
-  name                = "${random_id.project_name.hex}-vm"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  name                          = "${random_id.project_name.hex}-vm"
+  location                      = azurerm_resource_group.main.location
+  resource_group_name           = azurerm_resource_group.main.name
   network_interface_ids         = [module.networking.network_interface]
   vm_size                       = "Standard_A2_v2"
   delete_os_disk_on_termination = true
@@ -85,62 +85,49 @@ resource "azurerm_virtual_machine" "main" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
-}
 
-resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
-  name                 = "vault"
-  location             = var.location
-  resource_group_name  = azurerm_resource_group.main.name
-  virtual_machine_name = azurerm_virtual_machine.main.name
-  publisher            = "Microsoft.ManagedIdentity"
-  type                 = "ManagedIdentityExtensionForLinux"
-  type_handler_version = "1.0"
-
-  settings = <<SETTINGS
-    {
-        "port": 50342
-    }
-SETTINGS
-
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
 resource "azurerm_mysql_server" "sql" {
-  name = "${random_id.project_name.hex}-mysql"
+  name                = "${random_id.project_name.hex}-mysql"
   resource_group_name = azurerm_resource_group.main.name
-  location = azurerm_resource_group.main.location
+  location            = azurerm_resource_group.main.location
 
   sku {
-    name = "B_Gen5_2"
+    name     = "B_Gen5_2"
     capacity = 2
-    tier = "Basic"
-    family = "Gen5"
+    tier     = "Basic"
+    family   = "Gen5"
   }
 
   storage_profile {
-    storage_mb = 5120
+    storage_mb            = 5120
     backup_retention_days = 7
-    geo_redundant_backup = "Disabled"
+    geo_redundant_backup  = "Disabled"
   }
 
-  administrator_login = "sqladmin"
+  administrator_login          = "sqladmin"
   administrator_login_password = random_id.sql_password.id
-  version = "5.7"
-  ssl_enforcement = "Disabled"
+  version                      = "5.7"
+  ssl_enforcement              = "Disabled"
 }
 
 resource "azurerm_mysql_database" "database" {
-  name = "exampledb"
+  name                = "exampledb"
   resource_group_name = azurerm_resource_group.main.name
-  server_name = azurerm_mysql_server.sql.name
-  charset = "utf8"
-  collation = "utf8_general_ci"
+  server_name         = azurerm_mysql_server.sql.name
+  charset             = "utf8"
+  collation           = "utf8_general_ci"
 }
 
 resource "azurerm_mysql_firewall_rule" "sql" {
-  name = "FirewallRule1"
+  name                = "FirewallRule1"
   resource_group_name = azurerm_resource_group.main.name
-  server_name = azurerm_mysql_server.sql.name
-  start_ip_address = module.networking.public_ip
-  end_ip_address = module.networking.public_ip
+  server_name         = azurerm_mysql_server.sql.name
+  start_ip_address    = module.networking.public_ip
+  end_ip_address      = module.networking.public_ip
 }
 
