@@ -622,14 +622,14 @@ Windows Workstation Commands
 ```powershell
 cd ~/Desktop
 git clone https://github.com/hashicorp/workshops
-cd workshops/azure
+cd workshops/solutions/azure/terraform/oss99/
 code -r .
 ```
 
 Azure Cloudshell Commands
 ```bash
 git clone https://github.com/hashicorp/workshops
-cd workshops/azure
+cd workshops/solutions/azure/terraform/oss99/
 code .
 ```
 
