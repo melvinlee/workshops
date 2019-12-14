@@ -603,7 +603,7 @@ Windows Workstation Commands
 ```powershell
 cd ~/Desktop
 git clone https://github.com/hashicorp/workshops
-cd workshops/aws
+cd workshops/solutions/aws/terraform/oss99/
 code -r .
 ```
 
